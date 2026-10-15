@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA | Build Beyond</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #080a12;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Background */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 15% 20%, #6129a755, transparent 35%),
+        radial-gradient(circle at 85% 45%, #00c9c955, transparent 35%);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: -2px;
+}
+
+.logo span {
+    color: #58e6e0;
+}
+
+nav a {
+    color: #b6bad0;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #58e6e0;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: .3s;
+}
+
+.nav-btn, .primary-btn {
+    background: linear-gradient(100deg, #9b7bff, #58e6e0);
+    color: #080a12;
+    font-weight: bold;
+    padding: 13px 22px;
+    border-radius: 30px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px #9b7bff77;
+}
+
+/* Hero section */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 60px 8%;
+}
+
+.hero-content {
+    max-width: 600px;
+    animation: fadeIn 1s ease;
+}
+
+.badge {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 1px solid #ffffff30;
+    border-radius: 30px;
+    color: #58e6e0;
+    margin-bottom: 25px;
+    background: #ffffff08;
+}
+
+h1 {
+    font-size: clamp(45px, 7vw, 85px);
+    line-height: 1;
+    letter-spacing: -5px;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #b49aff, #58e6e0);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: #a4a9c2;
+    line-height: 1.8;
+    margin: 25px 0;
+    font-size: 17px;
+}
+
+.secondary-btn {
+    padding: 13px 22px;
+    border-radius: 30px;
+    color: white;
+    background: #ffffff10;
+    border: 1px solid #ffffff30;
+    margin-left: 10px;
+}
+
+/* Animated orb */
+.visual {
+    width: 350px;
+    height: 350px;
+    flex-shrink: 0;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.orb {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 25%,
+        #ffffff,
+        #b49aff 10%,
+        #7550e9 35%,
+        #191338 70%
+    );
+    box-shadow:
+        0 0 50px #9b7bff88,
+        0 0 120px #58e6e044;
+    animation: float 5s ease-in-out infinite;
+}
+
+.ring {
+    position: absolute;
+    width: 340px;
+    height: 130px;
+    border: 2px solid #58e6e077;
+    border-radius: 50%;
+    transform: rotate(-25deg);
+    animation: spin 8s linear infinite;
+}
+
+.card {
+    position: absolute;
+    padding: 15px 20px;
+    border: 1px solid #ffffff30;
+    background: #17192bdd;
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    animation: float 4s ease-in-out infinite;
+}
+
+.card small {
+    color: #a4a9c2;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card-one {
+    top: 20px;
+    left: -40px;
+}
+
+.card-two {
+    bottom: 20px;
+    right: -25px;
+    animation-delay: -2s;
+}
+
+/* Features */
+.features {
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: clamp(30px, 4vw, 48px);
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: #a4a9c2;
+    margin-bottom: 40px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+}
+
+.feature {
+    padding: 30px;
+    border: 1px solid #ffffff20;
+    border-radius: 20px;
+    background: #ffffff08;
+    transition: .3s;
+}
+
+.feature:hover {
+    transform: translateY(-8px);
+    border-color: #9b7bff;
+    background: #9b7bff12;
+}
+
+.feature .icon {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    margin-bottom: 12px;
+}
+
+.feature p {
+    color: #a4a9c2;
+    line-height: 1.7;
+}
+
+/* Call to action */
+.cta {
+    margin: 40px 8% 80px;
+    padding: 60px 25px;
+    text-align: center;
+    border-radius: 25px;
+    border: 1px solid #ffffff20;
+    background: radial-gradient(
+        circle at top,
+        #7952e933,
+        #ffffff05
+    );
+}
+
+.cta h2 {
+    font-size: clamp(28px, 4vw, 45px);
+}
+
+.cta p {
+    color: #a4a9c2;
+    margin: 18px 0 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #777d98;
+    border-top: 1px solid #ffffff15;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes spin {
+    from { transform: rotate(-25deg); }
+    to { transform: rotate(335deg); }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 800px) {
+    nav {
+        padding: 20px 5%;
+    }
+
+    nav .links {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 65px 6%;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .visual {
+        transform: scale(.85);
+        margin: -10px 0;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        padding: 60px 6%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">NOVA<span>✳</span></div>
+
+    <div class="links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+    </div>
+
+    <button class="nav-btn"
+        onclick="showMessage('Welcome to NOVA! ✨')">
+        Let's Talk ↗
+    </button>
+</nav>
+
+<main>
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <div class="badge">
+            ✦ A New Era of Creativity
+        </div>
+
+        <h1>
+            Dream Bigger.<br>
+            <span class="gradient">Build Beyond.</span>
+        </h1>
+
+        <p>
+            Transform your ideas into extraordinary digital
+            experiences. Discover the future of creativity,
+            technology, and innovation.
+        </p>
+
+        <button class="primary-btn"
+            onclick="document.getElementById('features')
+            .scrollIntoView({behavior:'smooth'})">
+            Explore More ↗
+        </button>
+
+        <button class="secondary-btn"
+            onclick="showMessage('Imagine. Create. Innovate. 🚀')">
+            Discover
+        </button>
+    </div>
+
+    <div class="visual">
+        <div class="ring"></div>
+        <div class="orb"></div>
+
+        <div class="card card-one">
+            <small>Creative Energy</small>
+            <strong>∞ Possibilities</strong>
+        </div>
+
+        <div class="card card-two">
+            <small>Innovation</small>
+            <strong>✨ Think Different</strong>
+        </div>
+    </div>
+
+</section>
+
+<section class="features" id="features">
+
+    <h2>Small Details. <span class="gradient">
+        Big Impact.</span></h2>
+
+    <p class="subtitle">
+        Everything you need to create something extraordinary.
+    </p>
+
+    <div class="feature-grid">
+
+        <article class="feature">
+            <div class="icon">✦</div>
+            <h3>Beautiful Design</h3>
+            <p>
+                Modern layouts, glowing gradients, and elegant
+                typography for a premium digital experience.
+            </p>
+        </article>
+
+        <article class="feature">
+            <div class="icon">⚡</div>
+            <h3>Lightning Fast</h3>
+            <p>
+                Lightweight code and smooth animations
+                create a fast and responsive experience.
+            </p>
+        </article>
+
+        <article class="feature">
+            <div class="icon">◎</div>
+            <h3>Fully Responsive</h3>
+            <p>
+                A flexible layout that adapts beautifully
+                to mobile phones, tablets, and desktops.
+            </p>
+        </article>
+
+    </div>
+</section>
+
+<section class="cta" id="about">
+    <h2>Ready to Create <span class="gradient">
+        Something Amazing?</span></h2>
+
+    <p>Your next big idea starts right here.</p>
+
+    <button class="primary-btn"
+        onclick="showMessage('Go build something amazing! 🚀')">
+        Start Creating ✨
+    </button>
+</section>
+</main>
+
+<footer>
+    © 2026 NOVA Studio | Crafted with curiosity ✦
+</footer>
+
+<div id="message"
+style="position:fixed;bottom:25px;left:50%;
+transform:translateX(-50%);background:#202238;
+border:1px solid #ffffff30;padding:14px 22px;
+border-radius:30px;display:none;z-index:10;">
+</div>
+
+<script>
+function showMessage(text) {
+    const message = document.getElementById("message");
+
+    message.textContent = text;
+    message.style.display = "block";
+
+    clearTimeout(window.messageTimer);
+
+    window.messageTimer = setTimeout(() => {
+        message.style.display = "none";
+    }, 2500);
+}
+</script>
+
+</body>
+</html>
